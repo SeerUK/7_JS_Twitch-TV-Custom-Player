@@ -96,7 +96,6 @@
         return new TTVPlayer($(this), options);
     };
 
-
     window.TTVPlayer = TTVPlayer;
 
 })( jQuery , jtv_api , window );
