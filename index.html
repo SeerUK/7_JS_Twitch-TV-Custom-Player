@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+	<title>Live | Unknown Degree</title>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jtv_api.js"></script>
+	<script type="text/javascript" src="js/ttvplayer.js"></script>
+
+	<script type="text/javascript">
+
+		/*var testPlayer;
+
+		$(document).ready( function() {
+			testPlayer = jtv_api.new_player('test', {
+				channel: 'paradoxinteractive',
+				consumer_key: '66M7ZnkgyBVycBwkS4l6dw',
+				auto_play: true,
+				custom: true,
+				start_volume: 0,
+			});
+
+			$('#play').click( function() {
+				testPlayer.play_live();
+			});			
+
+			$('#pause').click( function() {
+				testPlayer.pause_video();
+			});
+		});	
+
+		function getPlayer()
+		{
+			return testPlayer;
+		}*/
+
+		$(document).ready( function() {
+
+			$('#test').ttvplayer({});
+
+		});
+
+	</script>
+</head>
+<body>
+
+	<div id="test"></div>
+
+	<button type="button" id="play">Play</button>
+	<button type="button" id="pause">Pause</button>
+
+</body>
+</html>
