@@ -11,42 +11,40 @@
 
 	<script type="text/javascript">
 
-		/*var testPlayer;
-
 		$(document).ready( function() {
-			testPlayer = jtv_api.new_player('test', {
-				channel: 'paradoxinteractive',
-				consumer_key: '66M7ZnkgyBVycBwkS4l6dw',
-				auto_play: true,
-				custom: true,
-				start_volume: 0,
+
+			var stream = $('#test').ttvplayer({
+				autoPlay: true,
+				channel: 'mlgsc2',
+				consumerKey: '66M7ZnkgyBVycBwkS4l6dw',
+				startVolume: 0
 			});
 
 			$('#play').click( function() {
-				testPlayer.play_live();
+				stream.player.play_live();
 			});
 
 			$('#pause').click( function() {
-				testPlayer.pause_video();
-			});
-		});
-
-		function getPlayer()
-		{
-			return testPlayer;
-		}*/
-
-		$(document).ready( function() {
-
-			var player = $('#test').ttvplayer({
-				autoPlay: false,
-				channel: 'seeruk',
-				consumerKey: '66M7ZnkgyBVycBwkS4l6dw',
-				height: '500'
+				stream.player.pause_video();
 			});
 
-			console.log(player);
+			$('#mute').click( function() {
+				stream.player.mute();
+			});
 
+			$('#unmute').click( function() {
+				stream.player.unmute();
+			});
+
+			$('#vol').click( function() {
+				stream.player.change_volume(100);
+			});
+
+			$('#vol2').click( function() {
+				stream.player.change_volume(20);
+			});
+
+			console.log(stream.player);
 		});
 
 	</script>
@@ -57,6 +55,10 @@
 
 	<button type="button" id="play">Play</button>
 	<button type="button" id="pause">Pause</button>
+	<button type="button" id="mute">Mute</button>
+	<button type="button" id="unmute">Unmute</button>
+	<button type="button" id="vol">Change volume to 100</button>
+	<button type="button" id="vol2">Change volume to 20</button>
 
 </body>
 </html>
