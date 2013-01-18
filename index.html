@@ -24,12 +24,12 @@
 
 			$('#play').click( function() {
 				testPlayer.play_live();
-			});			
+			});
 
 			$('#pause').click( function() {
 				testPlayer.pause_video();
 			});
-		});	
+		});
 
 		function getPlayer()
 		{
@@ -38,7 +38,14 @@
 
 		$(document).ready( function() {
 
-			$('#test').ttvplayer({});
+			var player = $('#test').ttvplayer({
+				autoPlay: false,
+				channel: 'seeruk',
+				consumerKey: '66M7ZnkgyBVycBwkS4l6dw',
+				height: '500'
+			});
+
+			console.log(player);
 
 		});
 
