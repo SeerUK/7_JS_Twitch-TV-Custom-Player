@@ -36,9 +36,7 @@
         if ( !that.verifyRequired( that ) ) { throw '[TTVPlayer]::There was a problem with your options' };
 
         // Construct player object...
-        that.construct( that );
-
-        return that;
+        return that.construct( that );
 
     });
 
@@ -92,8 +90,8 @@
 
     // --------------------------------------------------------------------- //
 
-    $.fn.ttvplayer = function(options) {
-        return new TTVPlayer($(this), options);
+    $.fn.ttvplayer = function( options ) {
+        return new TTVPlayer( $(this) , options );
     };
 
     window.TTVPlayer = TTVPlayer;
