@@ -18,8 +18,8 @@
 
     "use strict";
 
-    if ( !$ )   { throw '[TTVPlayer]::Missing dependency: jQuery' }
-    if ( !jtv ) { throw '[TTVPlayer]::Missing dependency: JTV / TTV JavaScript API' }
+    if ( !$ )   { throw '[TTVPlayer]::Missing dependency: jQuery'; return; };
+    if ( !jtv ) { throw '[TTVPlayer]::Missing dependency: JTV / TTV JavaScript API'; return; };
 
     // --------------------------------------------------------------------- //
 
@@ -33,7 +33,7 @@
         that.options.width     = that.options.width  || container.width();
         that.status            = { paused: false, playing: false, stopped: true };
 
-        if ( !that.verifyRequired( that ) ) { throw '[TTVPlayer]::There was a problem with your options' };
+        if ( !that.verifyRequired( that ) ) { throw '[TTVPlayer]::There was a problem with your options'; return; };
 
         // Construct player object...
         return that.construct( that );
@@ -47,12 +47,12 @@
         startVolume:        26,
         watermarkPosition:  'top_right',
         width:              500
-    }
+    };
 
 
     TTVPlayer.prototype.verifyRequired = function( that ) {
 
-        if ( 'undefined' === typeof that.options.channel || 'string' !== typeof that.options.channel )         { return false };
+        if ( 'undefined' === typeof that.options.channel     || 'string' !== typeof that.options.channel )     { return false };
         if ( 'undefined' === typeof that.options.consumerKey || 'string' !== typeof that.options.consumerKey ) { return false };
 
         return true;
@@ -75,6 +75,7 @@
             {
                 that.player.change_volume(that.options.startVolume);
                 that.player.resize_player(that.options.width, that.options.height); // Not working?
+
                 //
                 // todo: register player events here!
                 //
@@ -86,7 +87,8 @@
         }, 500);
 
         return that.player;
-    }
+
+    };
 
     // --------------------------------------------------------------------- //
 

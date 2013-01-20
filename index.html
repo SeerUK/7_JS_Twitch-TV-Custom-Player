@@ -21,27 +21,27 @@
 			});
 
 			$('#play').click( function() {
-				stream.player.play_live();
+				stream.play_live();
 			});
 
 			$('#pause').click( function() {
-				stream.player.pause_video();
+				stream.pause_video();
 			});
 
 			$('#mute').click( function() {
-				stream.player.mute();
+				stream.mute();
 			});
 
 			$('#unmute').click( function() {
-				stream.player.unmute();
+				stream.unmute();
 			});
 
 			$('#vol').click( function() {
-				stream.player.change_volume(100);
+				stream.change_volume(100);
 			});
 
 			$('#vol2').click( function() {
-				stream.player.change_volume(20);
+				stream.change_volume(20);
 			});
 
 			console.log(stream);
