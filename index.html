@@ -21,7 +21,10 @@
 			});
 
 			$('#play').click( function() {
-				stream.play_live();
+				var player = $(this).siblings('embed')[0];
+
+				player.mute();
+				player.play_live();
 			});
 
 			$('#pause').click( function() {
@@ -44,21 +47,20 @@
 				stream.change_volume(20);
 			});
 
-			console.log(stream);
 		});
 
 	</script>
 </head>
 <body>
 
-	<div id="test"></div>
-
-	<button type="button" id="play">Play</button>
-	<button type="button" id="pause">Pause</button>
-	<button type="button" id="mute">Mute</button>
-	<button type="button" id="unmute">Unmute</button>
-	<button type="button" id="vol">Change volume to 100</button>
-	<button type="button" id="vol2">Change volume to 20</button>
+	<div id="test">
+		<button type="button" id="play">Play</button>
+		<button type="button" id="pause">Pause</button>
+		<button type="button" id="mute">Mute</button>
+		<button type="button" id="unmute">Unmute</button>
+		<button type="button" id="vol">Change volume to 100</button>
+		<button type="button" id="vol2">Change volume to 20</button>
+	</div>
 
 </body>
 </html>

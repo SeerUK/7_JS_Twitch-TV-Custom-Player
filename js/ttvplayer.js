@@ -21,7 +21,7 @@
     if ( !$ )   { throw '[TTVPlayer]::Missing dependency: jQuery'; return; };
     if ( !jtv ) { throw '[TTVPlayer]::Missing dependency: JTV / TTV JavaScript API'; return; };
 
-    // --------------------------------------------------------------------- //
+    // -- Player Instance -------------------------------------------------- //
 
     var TTVPlayer = (function(container, options) {
 
@@ -36,7 +36,9 @@
         if ( !that.verifyRequired( that ) ) { throw '[TTVPlayer]::There was a problem with your options'; return; };
 
         // Construct player object...
-        return that.construct( that );
+        that.construct( that );
+
+        return that;
 
     });
 
@@ -86,11 +88,28 @@
 
         }, 500);
 
-        return that.player;
+        that.constructControls( that );
+        that.bindEvents( that );
 
     };
 
-    // --------------------------------------------------------------------- //
+    // -- Controls --------------------------------------------------------- //
+
+    TTVPlayer.prototype.constructControls = function( that ) {
+
+        $('<button />', {
+            id: 'test'
+        }).appendTo('body');
+
+    };
+
+    // -- Events ----------------------------------------------------------- //
+
+    TTVPlayer.prototype.bindEvents = function( that ) {
+
+    };
+
+    // -- jQuery ----------------------------------------------------------- //
 
     $.fn.ttvplayer = function( options ) {
         return new TTVPlayer( $(this) , options );
