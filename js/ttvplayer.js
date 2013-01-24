@@ -23,15 +23,18 @@
 
     // -- Player Instance -------------------------------------------------- //
 
-    var TTVPlayer = (function(container, options) {
+    var TTVPlayer = (function(container, instanceId, options) {
 
         var that = this;
 
-        that.options           = $.extend(true, {}, that.defaults, options);
-        that.options.container = container[0].id;
-        that.options.height    = that.options.height || container.height();
-        that.options.width     = that.options.width  || container.width();
-        that.status            = { paused: false, playing: false, stopped: true };
+        that.options        = $.extend(true, {}, that.defaults, options);
+
+        that.options.container  = container;
+        that.options.instanceId = instanceId;
+
+        that.options.height = that.options.height || container.height();
+        that.options.width  = that.options.width  || container.width();
+        that.status         = { paused: false, playing: false, stopped: true };
 
         if ( !that.verifyRequired( that ) ) { throw '[TTVPlayer]::There was a problem with your options'; return; };
 
@@ -39,16 +42,15 @@
         that.construct( that );
 
         return that;
-
     });
 
 
     TTVPlayer.prototype.defaults = {
         autoPlay:           true,
-        height:             300,
+        height:             400,
         startVolume:        26,
         watermarkPosition:  'top_right',
-        width:              500
+        width:              900
     };
 
 
@@ -64,7 +66,7 @@
 
     TTVPlayer.prototype.construct = function( that ) {
 
-        that.player = jtv.new_player(that.options.container, {
+        that.player = jtv.new_player(that.options.instanceId, {
             channel:       that.options.channel,
             consumer_key:  that.options.consumerKey,
             auto_play:     that.options.autoPlay,
@@ -97,10 +99,6 @@
 
     TTVPlayer.prototype.constructControls = function( that ) {
 
-        $('<button />', {
-            id: 'test'
-        }).appendTo('body');
-
     };
 
     // -- Events ----------------------------------------------------------- //
@@ -112,7 +110,12 @@
     // -- jQuery ----------------------------------------------------------- //
 
     $.fn.ttvplayer = function( options ) {
-        return new TTVPlayer( $(this) , options );
+        return this.each( function(i, v) {
+            var instanceId = 'ttvplayer-' + (i + 1);
+            $(this).append( $('<div>').attr('id', instanceId) );
+
+            return new TTVPlayer( $(this) , instanceId , options );
+        });
     };
 
     window.TTVPlayer = TTVPlayer;

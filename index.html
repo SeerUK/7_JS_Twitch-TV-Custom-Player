@@ -13,7 +13,7 @@
 
 		$(document).ready( function() {
 
-			var stream = $('#test').ttvplayer({
+			var stream = $('.test').ttvplayer({
 				autoPlay: true,
 				channel: 'mlgsc2',
 				consumerKey: '66M7ZnkgyBVycBwkS4l6dw',
@@ -53,7 +53,16 @@
 </head>
 <body>
 
-	<div id="test">
+	<div class="test">
+		<button type="button" id="play">Play</button>
+		<button type="button" id="pause">Pause</button>
+		<button type="button" id="mute">Mute</button>
+		<button type="button" id="unmute">Unmute</button>
+		<button type="button" id="vol">Change volume to 100</button>
+		<button type="button" id="vol2">Change volume to 20</button>
+	</div>
+
+	<div class="test">
 		<button type="button" id="play">Play</button>
 		<button type="button" id="pause">Pause</button>
 		<button type="button" id="mute">Mute</button>
