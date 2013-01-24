@@ -7,7 +7,7 @@
  * @version 0.1a
  *
  * Note: Requires jQuery (made with jQuery 1.9)
- * Note: Requires the JTV JavaScript API (that's jtv_api.js)
+ * Note: Requires the JTV JavaScript API (this's jtv_api.js)
  *
  * ~ Don't worry, we've done the science ~
  *
@@ -25,23 +25,21 @@
 
     var TTVPlayer = (function(container, instanceId, options) {
 
-        var that = this;
+        this.options = $.extend(true, {}, this.defaults, options);
 
-        that.options        = $.extend(true, {}, that.defaults, options);
+        this.options.container  = container;
+        this.options.instanceId = instanceId;
 
-        that.options.container  = container;
-        that.options.instanceId = instanceId;
+        this.options.height = this.options.height || container.height();
+        this.options.width  = this.options.width  || container.width();
+        this.status         = { paused: false, playing: false, stopped: true };
 
-        that.options.height = that.options.height || container.height();
-        that.options.width  = that.options.width  || container.width();
-        that.status         = { paused: false, playing: false, stopped: true };
-
-        if ( !that.verifyRequired( that ) ) { throw '[TTVPlayer]::There was a problem with your options'; return; };
+        if ( !this.verifyRequired( this ) ) { throw '[TTVPlayer]::There was a problem with your options'; return; };
 
         // Construct player object...
-        that.construct( that );
+        this.construct();
 
-        return that;
+        return this;
     });
 
 
@@ -54,22 +52,24 @@
     };
 
 
-    TTVPlayer.prototype.verifyRequired = function( that ) {
+    TTVPlayer.prototype.verifyRequired = function() {
 
-        if ( 'undefined' === typeof that.options.channel     || 'string' !== typeof that.options.channel )     { return false };
-        if ( 'undefined' === typeof that.options.consumerKey || 'string' !== typeof that.options.consumerKey ) { return false };
+        if ( 'undefined' === typeof this.options.channel     || 'string' !== typeof this.options.channel )     { return false };
+        if ( 'undefined' === typeof this.options.consumerKey || 'string' !== typeof this.options.consumerKey ) { return false };
 
         return true;
 
     };
 
 
-    TTVPlayer.prototype.construct = function( that ) {
+    TTVPlayer.prototype.construct = function() {
 
-        that.player = jtv.new_player(that.options.instanceId, {
-            channel:       that.options.channel,
-            consumer_key:  that.options.consumerKey,
-            auto_play:     that.options.autoPlay,
+        var that = this;
+
+        this.player = jtv.new_player(this.options.instanceId, {
+            channel:       this.options.channel,
+            consumer_key:  this.options.consumerKey,
+            auto_play:     this.options.autoPlay,
             custom:        true
         });
 
@@ -90,20 +90,20 @@
 
         }, 500);
 
-        that.constructControls( that );
-        that.bindEvents( that );
+        this.constructControls();
+        this.bindEvents();
 
     };
 
     // -- Controls --------------------------------------------------------- //
 
-    TTVPlayer.prototype.constructControls = function( that ) {
+    TTVPlayer.prototype.constructControls = function() {
 
     };
 
     // -- Events ----------------------------------------------------------- //
 
-    TTVPlayer.prototype.bindEvents = function( that ) {
+    TTVPlayer.prototype.bindEvents = function() {
 
     };
 
